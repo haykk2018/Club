@@ -67,34 +67,18 @@ public class MembershipManagement {
             memberID = m.getLast().getMemberID() + 1;
         else
             memberID = 1;
-//        cal = (n)-> {
-//            switch (n)
-//            {
-//                case 1:
-//                    return 900;
-//                case 2:
-//                    return 950;
-//                case 3:
-//                    return 1000;
-//                default:
-//                    return -1;
-//            }
-//        };
-        cal = new Calculator<Integer>() {
-            @Override
-            public double calculateFees(Integer n) {
-                switch (n) {
-                    case 1:
-                        return 900;
-                    case 2:
-                        return 950;
-                    case 3:
-                        return 1000;
-                    case 4:
-                        return 1200;
-                    default:
-                        return -1;
-                }
+        cal = (n) -> {
+            switch (n) {
+                case 1:
+                    return 900;
+                case 2:
+                    return 950;
+                case 3:
+                    return 1000;
+                case 4:
+                    return 1200;
+                default:
+                    return -1;
             }
         };
         fees = cal.calculateFees(club);
@@ -116,9 +100,9 @@ public class MembershipManagement {
         int memberID;
         System.out.println("Please enter a number ID");
         memberID = getIntInput();
-        for (int i = 0; i < m.size(); i++) {
-            if (m.get(i).getMemberID() == memberID) {
-                m.remove(i);
+        for (Member item : m) {
+            if (item.getMemberID() == memberID) {
+                m.remove(item);
                 System.out.println("visitor removed");
                 // so as will not to continue the loop
                 return;
@@ -132,9 +116,9 @@ public class MembershipManagement {
         String[] memberInfo = new String[5];
         System.out.println("Please enter a number ID");
         memberID = getIntInput();
-        for (int i = 0; i < m.size(); i++) {
-            if (m.get(i).getMemberID() == memberID) {
-                memberInfo = m.get(i).toString().split(",");
+        for (Member item : m) {
+            if (item.getMemberID() == memberID) {
+                memberInfo = item.toString().split(",");
             }
         }
         System.out.println("Member Type = " + memberInfo[0]);

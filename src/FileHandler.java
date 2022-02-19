@@ -18,9 +18,8 @@ public class FileHandler {
         String s;
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("members.temp", false))) {
 
-            for (int i = 0; i < m.size(); i++) {
-                s = m.get(i).toString();
-                writer.write(s + "\n");
+            for (Member item : m) {
+                writer.write((item.toString()) + "\n");
             }
 
         } catch (IOException e) {
@@ -40,7 +39,7 @@ public class FileHandler {
         String lineRead;
         String[] splitLine;
         Member mem;
-        try (BufferedReader reader = new BufferedReader(new FileReader("members.csv"))){
+        try (BufferedReader reader = new BufferedReader(new FileReader("members.csv"))) {
             //loop reed by line to line
             lineRead = reader.readLine();
             while (lineRead != null) {
@@ -55,7 +54,7 @@ public class FileHandler {
                 m.add(mem);
                 lineRead = reader.readLine();
             }
-        } catch(IOException e){
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
 
