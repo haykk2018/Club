@@ -46,8 +46,8 @@ public class Member {
     @Override
     public String toString() {
         return memberType +
-                "," + memberID +
-                "," + name  +
-                "," + fees;
+                ", " + memberID +
+                ", " + name  +
+                ", " + fees;
     }
 }
