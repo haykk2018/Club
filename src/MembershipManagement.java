@@ -12,8 +12,7 @@ public class MembershipManagement {
             try {
                 //System.out.println("please enter integer number");
                 choice = reader.nextInt();
-                if (choice == 0)
-                    throw new InputMismatchException();
+                if (choice == 0) throw new InputMismatchException();
                 reader.nextLine();
             } catch (InputMismatchException e) {
                 reader.nextLine();
@@ -33,16 +32,16 @@ public class MembershipManagement {
 
     }
 
-    int getChoice() {
-        int choice;
+    int getActionChoice() {
+        int actionChoice;
         System.out.println("WELCOME TO OZONE FITNESS CENTER\n" +
                 "================================\n" +
                 "1)Add Member\n" +
                 "2)Remove Member\n" +
                 "3)Display Member Information\n" +
                 "Please select an option (or Enter '- 1' to quit)");
-        choice = getIntInput();
-        return choice;
+        actionChoice = getIntInput();
+        return actionChoice;
     }
 
     public String addMembers(LinkedList<Member> m) {
@@ -83,12 +82,12 @@ public class MembershipManagement {
         };
         fees = cal.calculateFees(club);
         if (club != 4) {
-            mbr = new SingleClubMember('S', memberID, name, fees, club);
+            mbr = createMember("S", memberID, name, fees, club);
             m.add(mbr);
             mem = mbr.toString();
             System.out.println("\nSTATUS: Single Club Member added\n");
         } else {
-            mbr = new MultiClubMember('M', memberID, name, fees, club, 100);
+            mbr = createMember("M", memberID, name, fees, club);
             m.add(mbr);
             mem = mbr.toString();
             System.out.println("\nSTATUS: MultiClub Member added\n");
@@ -126,5 +125,17 @@ public class MembershipManagement {
         System.out.println("Member Name = " + memberInfo[2]);
         System.out.println("Membership Fees = " + memberInfo[3]);
         System.out.println("Membership Points = " + memberInfo[4]);
+    }
+
+    static Member createMember(String memberType, int memberID, String name, double fees, int club) {
+        switch (memberType) {
+            case "S":
+                return new SingleClubMember('S', memberID, name, fees, club);
+            case "M":
+                return new MultiClubMember('M', memberID, name, fees, club, 100);
+
+            default:
+                throw new IllegalStateException("Unexpected value: " + memberType);
+        }
     }
 }

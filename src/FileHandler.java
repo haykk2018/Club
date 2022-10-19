@@ -44,13 +44,8 @@ public class FileHandler {
             lineRead = reader.readLine();
             while (lineRead != null) {
                 splitLine = lineRead.split(",");
-                if (splitLine[0].equals("S")) {
-                    mem = new SingleClubMember('S', Integer.parseInt(splitLine[1]), splitLine[2],
-                            Double.parseDouble(splitLine[3]), Integer.parseInt(splitLine[4]));
-                } else {
-                    mem = new MultiClubMember('M', Integer.parseInt(splitLine[1]), splitLine[2],
-                            Double.parseDouble(splitLine[3]), Integer.parseInt(splitLine[4]), Integer.parseInt(splitLine[5]));
-                }
+                mem = MembershipManagement.createMember(splitLine[0], Integer.parseInt(splitLine[1]), splitLine[2],
+                        Double.parseDouble(splitLine[3]), Integer.parseInt(splitLine[4]));
                 m.add(mem);
                 lineRead = reader.readLine();
             }

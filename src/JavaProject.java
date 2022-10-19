@@ -6,9 +6,9 @@ public class JavaProject {
         MembershipManagement mm = new MembershipManagement();
         FileHandler fh = new FileHandler();
         LinkedList<Member> members = fh.readFile();
-        int choice = mm.getChoice();
-        while (choice != -1) {
-            switch (choice) {
+        int actionChoice = mm.getActionChoice();
+        while (actionChoice != -1) {
+            switch (actionChoice) {
                 case 1:
                     mem = mm.addMembers(members);
                     fh.appendFile(mem);
@@ -24,7 +24,7 @@ public class JavaProject {
                     System.out.print("\nYou have selected an invalid option.\n\n");
                     break;
             }
-            choice = mm.getChoice();
+            actionChoice = mm.getActionChoice();
         }
         System.out.println("\nGood Bye");
     }
